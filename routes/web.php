@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+
+//Redirect Route here
+Route::get('/redirect', function (){
+   if(Auth::user()->usertype == "councilor")
+   {
+    return view('/admin/dashboard');
+   }
+   else if(Auth::user()->usertype == "councilee")
+   {
+     return view('/dashboard');
+   }
 });
