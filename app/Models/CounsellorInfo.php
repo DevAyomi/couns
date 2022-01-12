@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CounselRequest extends Model
+class CounsellorInfo extends Model
 {
     use HasFactory;
 
-    public function counsellee()
+    public function counsellor()
     {
-        return $this->belongsTo(User::class)->withDefault();
+        $this->belongsTo(User::class)->withDefault();
     }
 }

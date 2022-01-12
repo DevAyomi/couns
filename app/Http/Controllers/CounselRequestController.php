@@ -33,7 +33,7 @@ class CounselRequestController extends Controller
     public function getAllMyCounselRequests()
     {
         if (auth()->user()->usertype == 'councilee') {
-            $counselRequest = CounselRequest::where('counsellee_id', auth()->user()->id)->get();
+            $counselRequests = CounselRequest::where('counsellee_id', auth()->user()->id)->get();
 
             // return view
         }
