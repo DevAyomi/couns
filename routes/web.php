@@ -6,6 +6,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\Category;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CounselRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,10 @@ use App\Http\Controllers\BookingController;
 |
 */
 
+Route::get('test', function () {
+    dd(auth()->user()->usertype);
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 //Admin Route Defined here
-Route::get('/admin/dashboard', function (){
+Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
 
@@ -43,5 +48,10 @@ Route::post('update/{id}', [CategoryController::class, 'update'])->name('categor
 //Session Booking with a councilor
 route::post('/book-session', [BookingController::class, 'book'])->name('/book-session');
 
-
-
+Route::group(['prefix' => 'counsel_requests', 'name' => 'counselReq.'], function () {
+    //for named route, call it as Route('counselReq.store') and others
+    Route::post('', [CounselRequestController::class, 'store'])->name('store');
+    Route::get('/my_requests', [CounselRequestController::class, 'getAllMyCounselRequests'])->name('mine');
+    Route::get('/show/{id}', [CounselRequestController::class, 'show'])->name('single');
+    Route::delete('delete/{id}', [CounselRequestController::class, 'delete'])->name('delete');
+});
