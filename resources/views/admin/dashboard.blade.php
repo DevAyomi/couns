@@ -70,14 +70,7 @@
             </div>
              <div class="card-body border">
                
-              @if($bookings !== null)
-              @foreach($bookings as $booking)
-                {{$booking->username}}
-              @endforeach
-              @else
-              No bookings available
-              @endif
-
+            
                
             </div>
         </div>

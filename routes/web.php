@@ -40,8 +40,8 @@ Route::post('/cat-post', [CategoryController::class, 'create']);
 Route::get('update', [CategoryController::class, 'upView'])->name('update-cat');
 Route::post('update/{id}', [CategoryController::class, 'update'])->name('category');
 
-//Session Booking with a councilor
-route::post('/book-session', [BookingController::class, 'book'])->name('/book-session');
+//Create Counsel
+
 
 
 
