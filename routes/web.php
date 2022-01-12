@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BaseController;
+use App\Models\Category;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +26,22 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+//Admin Route Defined here
+Route::get('/admin/dashboard', function (){
+    return view('admin.dashboard');
+});
 
 //Redirect Route here
-Route::get('/redirect', function (){
-   if(Auth::user()->usertype == "councilor")
-   {
-    return view('/admin/dashboard');
-   }
-   else if(Auth::user()->usertype == "councilee")
-   {
-     return view('/dashboard');
-   }
-});
+Route::get('/redirect', [BaseController::class, 'redirect']);
+
+Route::post('/cat-post', [CategoryController::class, 'create']);
+
+//Upadate Category route here
+Route::get('update', [CategoryController::class, 'upView'])->name('update-cat');
+Route::post('update/{id}', [CategoryController::class, 'update'])->name('category');
+
+//Session Booking with a councilor
+route::post('/book-session', [BookingController::class, 'book'])->name('/book-session');
+
+
+
