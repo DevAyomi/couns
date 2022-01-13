@@ -50,8 +50,11 @@ Route::post('update/{id}', [CategoryController::class, 'update'])->name('categor
 
 Route::group(['prefix' => 'counsel_requests', 'name' => 'counselReq.'], function () {
     //for named route, call it as Route('counselReq.store') and others
-    Route::post('', [CounselRequestController::class, 'store'])->name('store');
-    Route::get('/my_requests', [CounselRequestController::class, 'getAllMyCounselRequests'])->name('mine');
-    Route::get('/show/{id}', [CounselRequestController::class, 'show'])->name('single');
-    Route::delete('delete/{id}', [CounselRequestController::class, 'delete'])->name('delete');
+    Route::post('', [CounselRequestController::class, 'store'])->name('counselReq.store');
+    Route::get('/my_requests', [CounselRequestController::class, 'getAllMyCounselRequests'])->name('counselReq.mine');
+    Route::get('/show/{id}', [CounselRequestController::class, 'show'])->name('counselReq.single');
+    Route::delete('delete', [CounselRequestController::class, 'delete'])->name('counselReq.delete');
+    Route::get('/view', [CounselRequestController::class, 'view'])->name('counsel.request');
 });
+
+

@@ -60,9 +60,6 @@ class CategoryController extends Controller
         return view('admin.updateCat', compact('category'));
    }
 
-   public function showBooking(){
-    
-   }
 
 
 }

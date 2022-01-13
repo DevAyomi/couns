@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
-use App\Models\Booking;
+use App\Models\CounselRequest;
 use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller
@@ -16,14 +16,15 @@ class BaseController extends Controller
     public function redirect(){
         if(Auth::user()->usertype == "councilor")
            { 
-            $bookings = Booking::where('user_id', auth()->user()->id)->get();
+            
             $category = Category::firstWhere('user_id', Auth::user()->id);
-            return view('admin/dashboard', compact('category', 'bookings'));
+            return view('admin/dashboard', compact('category'));
            }
            else if(Auth::user()->usertype == "councilee")
            {
             $counsellors = Category::all();
-            return view('/dashboard', compact('counsellors'));
+            $counselle = User::firstWhere('id', Auth::user()->id );
+            return view('/dashboard', compact('counsellors', 'counselle'));
            }
 
     }

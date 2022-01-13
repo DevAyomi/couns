@@ -13,4 +13,10 @@ class CounselRequest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $fillable = [
+        'consellee_id',
+        'category_id',
+        'request',
+    ];
 }

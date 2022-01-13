@@ -27,11 +27,15 @@
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5>
-                                        Winner
+                                    <h5 class="mb-3">
+                                        {{ $counselle->name }}
                                     </h5>
                                     <h6>
-                                        Web Developer and Designer
+                                        @if($counselle->usertype = 'councilee')
+                                        Counsellee
+                                        @else
+                                        Counsellor
+                                        @endif
                                     </h6>
                                     <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -41,18 +45,11 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                       <a href="" class="btn btn-info mt-2">Create Counsel</a>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
-                        </div>
+                        
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
@@ -63,7 +60,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Winner</p>
+                                                <p>{{ $counselle->name }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -71,24 +68,10 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>gbolagadewinner@gmail.com</p>
+                                                <p>{{ $counselle->email }}</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>123 456 7890</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Profession</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Web Developer and Designer</p>
-                                            </div>
+                                        
                                         </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
