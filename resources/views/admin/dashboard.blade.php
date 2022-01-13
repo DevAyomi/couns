@@ -28,10 +28,10 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5 class="mb-3">
-                                        {{ auth()->user()->name }}
+                                        {{ $counsellor->name }}
                                     </h5>
                                     <h6>
-                                        @if(auth()->user()->usertype = 'councilee')
+                                        @if($counsellor->usertype == 'councilee')
                                         Counsellee
                                         @else
                                         Counsellor
@@ -60,7 +60,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{auth()->user()->name}}</p>
+                                                <p>{{$counsellor->name}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -68,7 +68,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{ auth()->user->name }}</p>
+                                                <p>{{ $counsellor->email }}</p>
                                             </div>
                                         </div>
                                         
