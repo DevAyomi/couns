@@ -11,7 +11,7 @@ class CounselRequest extends Model
 
     public function counsellee()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault();
     }
 
     protected $fillable = [
