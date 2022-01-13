@@ -45,6 +45,15 @@ class CounselRequestController extends Controller
 
             // return view
             return view('showRequest', compact('counselRequest'));
+        }else{
+            $category = Category::firstWhere('user_id', auth()->user()->id);
+            if(!is_null($category)){
+                $counselRequest = CounselRequest::where('category_id', $category->id)->get();
+                return view('showRequest', compact('counselRequest'));
+            }else{
+               return view('create')->with('info', 'You have to create a category first');
+            }
+               
         }
     }
 

@@ -7,17 +7,13 @@
     </x-slot>
 
    <div class="container">
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
-                <strong>{{ $message }}</strong>
-        </div>
+       @if(!empty($info))
+          <div class="alert alert-success mt-2"> {{ $info }}</div>
         @endif
 
       <div class="row">
         <div class="col-sm-5 col-md-6 mt-3">
           
-           @if($category == null)
            <div class="card-header bg-dark text-light">
                 <h3>Select Category Section</h3>
             </div>
@@ -40,7 +36,7 @@
                       </div>
                       <div class="col-md-12">
                 </div>
-
+                <div>
                       <button class="btn btn-success float-right mt-4">Submit</button>
                    </div> 
                 </form>
@@ -48,31 +44,7 @@
             <div class="card-footer">
                 Thanks for using our services
             </div>
-            @else
-                <div class="card-header">
-                   <h3> Category Status</h3>
-                </div>
-                <div class="card-body">
-                    <div style="display: flex;">
-                        <img src="images/{{ $category->imgpath }}" width ="100px">
-                        <h1 style="margin-top: 50px; margin-left: 5px; font-weight: bold;">{{$category->category}}</h1>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-info" href="{{url('update')}}">Change Your Category Here</a>
-                </div>
-            @endif
-            
-        </div>
-        <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0 mt-3">
-             <div class="card-header bg-dark text-light">
-                <h3>List of all counsel requests</h3>
-            </div>
-             <div class="card-body border">
-               
-            
-               
-            </div>
+    
         </div>
       </div>
 </div>
@@ -84,6 +56,5 @@
 
 
                
-                            councilee
 
                            

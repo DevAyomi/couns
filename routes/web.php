@@ -45,7 +45,8 @@ Route::post('/cat-post', [CategoryController::class, 'create']);
 Route::get('update', [CategoryController::class, 'upView'])->name('update-cat');
 Route::post('update/{id}', [CategoryController::class, 'update'])->name('category');
 
-//Create Counsel
+//Show Counsel Request for Admin
+Route::get('create-category' [CategoryController::class, 'CreateShow'])->name('create-category');
 
 
 Route::group(['prefix' => 'counsel_requests', 'name' => 'counselReq.'], function () {

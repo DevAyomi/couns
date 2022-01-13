@@ -26,7 +26,7 @@ class BaseController extends Controller
             $counsellorss = User::where('usertype', 'councilor')->get();
 
             $category = Category::firstWhere('user_id', Auth::user()->id);
-            return view('admin/dashboard', compact('category'));
+            return view('/dashboard', compact('category', 'counselle'));
            }
            else if(Auth::user()->usertype == "councilee")
            {
