@@ -16,7 +16,6 @@ class BaseController extends Controller
     public function redirect(){
         if(Auth::user()->usertype == "councilor")
            { 
-            
             $category = Category::firstWhere('user_id', Auth::user()->id);
             return view('admin/dashboard', compact('category'));
            }
