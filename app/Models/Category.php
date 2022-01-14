@@ -14,10 +14,5 @@ class Category extends Model
         'category',
         'user_id',
         'username',
-        'imgpath',
     ];
-
-    public function booking(){
-        return $this->hasOne('Booking');
-    }
 }

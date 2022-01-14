@@ -104,11 +104,8 @@
                                <x-jet-dropdown-link href="{{ route('counselReq.mine') }}">
                                 {{ __('Counsel request') }}
                                </x-jet-dropdown-link>
-                               @else
-                               <x-jet-dropdown-link href="{{ route('counselReq.mine') }}">
-                                {{ __('Counsel request') }}
-                               </x-jet-dropdown-link>
                                @endif
+
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">

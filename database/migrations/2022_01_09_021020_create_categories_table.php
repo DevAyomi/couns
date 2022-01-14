@@ -18,7 +18,6 @@ class CreateCategoriesTable extends Migration
             $table->string('username');
             $table->string('category')->unique();
             $table->foreignId('user_id');
-            $table->string('imgpath');
             $table->timestamps();
         });
     }

@@ -15,10 +15,17 @@ class BaseController extends Controller
     public function redirect(){
         if(Auth::user()->usertype == "councilor")
            { 
-            $category = Category::firstWhere('user_id', Auth::user()->id);
+            $category = Category::firstWhere('user_id', auth()->user()->id);
+            if(!is_null($category)){
+                $category = Category::firstWhere('user_id', auth()->user()->id);
+                $counselRequest = CounselRequest::where('category_id', $category->id)->get();
+                return view('admin/dashboard', compact('counselRequest', 'category'));
+            }else{ 
+                
+                 return view('create')->with('info', 'You have to create a category first');
+            }
             
-                $counsellor = User::firstWhere('id', Auth::user()->id);
-                 return view('admin/dashboard', compact('counsellor'));
+               
 
         } else if (Auth::user()->usertype == "councilee") {
             $counsellors = Category::all(); //Name this variable accordingly

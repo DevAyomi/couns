@@ -19,36 +19,28 @@ class CategoryController extends Controller
 
     public function create(Request $request){
         $validatedData = $request->validate([
-         'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:3048',
+         'category' => 'required|string|max:30|unique:categories,category',
         ]);
 
-        $image = $request->file('image');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'), $imageName);
         $user = Category::create([
             'username' => Auth::user()->name,
             'category' => $request->category,
             'user_id' => Auth::user()->id,
-            'imgpath' => $imageName,
         ]);
-        return redirect()->back()->with('success', 'You have successfully selected a category');
+        return redirect('/redirect')->with('success', 'You have successfully created a category');
 
     }
 
    public function update(Request $request, $id){
 
         $validatedData = $request->validate([
-         'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+         'category' => 'required|string|max:30|',
         ]);
 
         $category = Category::find($id);
 
-        $image = $request->file('image');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'), $imageName);
 
         $category->category = $request->category;
-        $category->imgpath = $imageName;
         $category->save();
 
         return redirect('/redirect')->with('success', 'You have successfully updated your category');
@@ -61,7 +53,7 @@ class CategoryController extends Controller
    }
 
    public function CreateShow(){
-    return view('/create');
+    return view('create');
    }
 
 

@@ -75,5 +75,9 @@ class CounselRequestController extends Controller
         return view('counsel', compact('categories','counselles'));
     }
 
+    public function CreateShow(){
+        return view('create');
+       }
+
 
 }

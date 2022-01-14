@@ -8,7 +8,10 @@
 
    <div class="container">
        @if(!empty($info))
-          <div class="alert alert-success mt-2"> {{ $info }}</div>
+          <div class="alert alert-info alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong>{{ $info }}</strong>
+        </div>
         @endif
 
       <div class="row">
@@ -18,26 +21,19 @@
                 <h3>Select Category Section</h3>
             </div>
             <div class="card-body border">
-                <form action="{{ url('/cat-post') }}" method="post" enctype="multipart/form-data" id="upload-image">
+                 <form action="{{ url('/cat-post') }}" method="post">
                    @csrf
                    <div class="form-group">
                     <label for="category">Choose your counselling category</label>
-                      <select class="form-control" name="category">
-                          <option name="finances">Finances</option>
-                          <option name="educational">Educational</option>
-                          <option name="religion">Religion</option>
-                          <option name="marriage">Marriage</option>
-                      </select>
-                      <div class="form-group mt-3">
-                            <input type="file" class="form-control" name="image" placeholder="Choose image" id="image">
-                        @error('image')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                      </div>
-                      <div class="col-md-12">
-                </div>
-                <div>
+                      <input type="text" name="category" class="form-control">
+                       @if($errors->has('category'))
+                            <div class="error text-danger">{{ $errors->first('category') }}</div>
+                        @endif
                       <button class="btn btn-success float-right mt-4">Submit</button>
+                      <div class="col-md-12">
+
+                </div>
+
                    </div> 
                 </form>
             </div>
