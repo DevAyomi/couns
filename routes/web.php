@@ -52,7 +52,7 @@ Route::post('update/{id}', [CategoryController::class, 'update'])->name('categor
 Route::group(['prefix' => 'counsellor'], function (){
     Route::any('chat', [CounsellorChatController::class, 'createChat'])->name('establish.chat');
     Route::get('view-chat', [CounsellorChatController::class, 'view'])->name('view.chat');
-    Route::any('send-message', [CounsellorChatController::class, 'sendMessageToCounsellee'])->name('send.message');
+    Route::post('send-message', [CounsellorChatController::class, 'sendMessageToCounsellee'])->name('send.message');
     Route::get('get-chat/{id}', [CounsellorChatController::class, 'getAllMessagesInAChatWithCounsellee'])->name('get.chat');
 });
 

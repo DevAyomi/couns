@@ -43,15 +43,15 @@ class BaseChatController extends Controller
      */
     public function sendMessage($chatId, $content, $replyingTo = null, $counsellorId = null, $counselleeId = null)
     {
-            Message::create([
-                'counsellor_id' => $counsellorId,
-                'counsellee_id' => $counselleeId,
-                'replying_to' => !is_null($replyingTo) ? $replyingTo : 1,
-                'content' => $content,
-                'chat_id' => $chatId
-            ]);
+        Message::create([
+            'counsellor_id' => $counsellorId,
+            'counsellee_id' => $counselleeId,
+            'replying_to' => !is_null($replyingTo) ? $replyingTo : 1,
+            'content' => $content,
+            'chat_id' => $chatId
+        ]);
 
-            return true;
+        return true;
     }
 
     /**
@@ -130,7 +130,6 @@ class BaseChatController extends Controller
     public function getCurrentUserChats($userType)
     {
         if ($userType != 'counsellor' and $userType != 'counsellee') return;
-
         return Chat::where("{$userType}_id", auth()->id())->get();
     }
 }

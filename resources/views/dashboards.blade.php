@@ -7,7 +7,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Dashboard') }}
             </h2>
-            
+
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 @if(Auth::user()->usertype == "councilee")
                 <a href="{{ route('counsel.request') }}">{{ __('Create counsel request') }}</a>
@@ -18,19 +18,19 @@
 
         @if ($message = Session::get('info'))
         <div class="alert alert-info alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
         @endif
          @if ($message = Session::get('fail'))
         <div class="alert alert-danger alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
         @endif
          @if ($message = Session::get('established'))
         <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
         @endif
@@ -45,7 +45,7 @@
             <div class="card card-just-text" data-background="color" data-color="blue" data-radius="none">
                 <div class="content">
                     <h6 class="category"></h6>
-                    <p>{{ Str::limit($counsel->request, 20) }}</p>
+                    <p>{{ $counsel->request}}</p>
                     <a class="btn btn-info form-control mb-2 mt-2" href="{{route('counselReq.single', ['id' => $counsel->id])}}">View</a>
 
                     <form method="post" action="{{ route('counselReq.delete', ['id' => $counsel->id]) }}">
@@ -53,7 +53,7 @@
                         @method('DELETE')
                         <button class="btn btn-danger form-control">Delete</button>
                     </form>
-                    
+
                 </div>
             </div> <!-- end card -->
         </div>
@@ -61,7 +61,7 @@
     @endforeach
 </div>
 @else
-    
+
     @if(is_null($counselRequest))
         <div class="container">
              <div class="container mt-5">
@@ -88,7 +88,7 @@
                         <p class="btn btn-info form-control mb-2 mt-2">Established</p>
                         @endif
                    </form>
-                    
+
                 </div>
             </div> <!-- end card -->
         </div>

@@ -9,24 +9,21 @@ use App\Models\CounselRequest;
 use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller
-{   
+{
 
 
-    public function redirect(){
-        if(Auth::user()->usertype == "councilor")
-           { 
+    public function redirect()
+    {
+        if (Auth::user()->usertype == "councilor") {
             $category = Category::firstWhere('user_id', auth()->user()->id);
-            if(!is_null($category)){
+            if (!is_null($category)) {
                 $category = Category::firstWhere('user_id', auth()->user()->id);
                 $counselRequest = CounselRequest::where('category_id', $category->id)->get();
                 return view('dashboards', compact('counselRequest', 'category'));
-            }else{ 
-                
-                 return view('create')->with('info', 'You have to create a category first');
-            }
-            
-               
+            } else {
 
+                return view('create')->with('info', 'You have to create a category first');
+            }
         } else if (Auth::user()->usertype == "councilee") {
             $counsellors = Category::all(); //Name this variable accordingly
             $counselle = User::firstWhere('id', Auth::user()->id);
@@ -34,17 +31,15 @@ class BaseController extends Controller
 
             $category = Category::firstWhere('user_id', Auth::user()->id);
             return view('/dashboard', compact('category', 'counselle'));
-           }
-           else if(Auth::user()->usertype == "councilee")
-           {
+        } else if (Auth::user()->usertype == "councilee") {
             $counsellors = Category::all();
-            $counselle = User::firstWhere('id', Auth::user()->id );
+            $counselle = User::firstWhere('id', Auth::user()->id);
             return view('/dashboard', compact('counsellors', 'counselle'));
-           }
-
         }
+    }
 
-         public function viewMessage(){
-            return view('chat');
-         }
+    public function viewMessage()
+    {
+        return view('chat');
+    }
 }

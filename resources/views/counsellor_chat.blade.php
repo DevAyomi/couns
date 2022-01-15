@@ -684,9 +684,9 @@
   outline: none;
 }
 </style></head><body>
-<!-- 
+<!--
 
-A concept for a chat interface. 
+A concept for a chat interface.
 
 Try writing a new message! :)
 
@@ -700,9 +700,10 @@ Website: http://emilcarlsson.se/
 
 <div id="frame">
 	<div id="sidepanel">
+
      @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
         @endif
@@ -715,17 +716,18 @@ Website: http://emilcarlsson.se/
 			<div class="wrap">
          @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
         @endif
           @if ($message = Session::get('fail'))
         <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
         @endif
-				
+         <a href="{{ url('/redirect') }}" class="btn btn-info m-3">Back</a>
+
 				<div id="status-options">
 					<ul>
 						<li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
@@ -744,74 +746,37 @@ Website: http://emilcarlsson.se/
 				</div>
 			</div>
 		</div>
-		<div id="search">
+		{{-- <div id="search">
 			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
 			<input type="text" placeholder="Search contacts..." />
-		</div>
+		</div> --}}
+
+
 		<div id="contacts">
-			<ul>	
-			 <li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
-						<div class="meta">
-							<a style="color: white;" href="{{route('get.chats',['id' => $chatId->id])}}">
-                  <p class="name">{{ auth()->user()->name }}</p>
-                  <p class="preview"><span>You:</span> That's bullshit. This deal is solid.</p>       
-              </a>
-						</div>
-					</div>
-				</li>
-			</ul>
+            @foreach ($chats as $chat )
+            <ul>
+                <li class="contact">
+                       <div class="wrap">
+                           <span class="contact-status"></span>
+                           <img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
+                           <div class="meta" style="color: white">
+                     <a href="{{route('get.chat', $chat->id)}}" style="color: white;"><p class="name">{{ $chat->counsellee->name }}</p></a>
+                     <p class="preview"><span>You:</span> ...</p>
+                 </a>
+                           </div>
+                       </div>
+                   </li>
+               </ul>
+            @endforeach
+
 		</div>
-		
+
 	</div>
 	<div class="content">
-		<div class="contact-profile">
-			<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-			<p>{{ auth()->user()->name }}</p>
-			<div class="social-media">
-				<i class="fa fa-facebook" aria-hidden="true"></i>
-				<i class="fa fa-twitter" aria-hidden="true"></i>
-				 <i class="fa fa-instagram" aria-hidden="true"></i>
-			</div>
-		</div>
+
 		<div class="messages">
-			<ul>
-				 @empty($messages)
-          
-         @else
-            @foreach($messages as $message)
-            <li class="sent">
-              <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-              <p>{{$message->content}}</p>
-            </li>
-            @endforeach
-         @endempty
-				<li class="replies">
-					<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-					<p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-				</li>
-			</ul>
-		</div>
-		<div style="height: 40px;" class="message-input">
-			<div class="wrap">
-
-        <form action="{{ route('message.send') }}" method="post">
-          @csrf
-          <input style="height: 50px; font-size: 17px;" type="text" name="message" placeholder="Write your message..." />
-          <input type="hidden" name="chat_id" value="{{$chatId->id}}">
-          <input type="hidden" name="counsellor_id" value="{{ $chatId->counsellor_id }}">
-          @if($errors->has('message'))
-              <div class="error text-danger">{{ $errors->first('message') }}</div>
-          @endif
-          <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-
-          <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-        </form>
-			
-			</div>
-		</div>
+            <h3>None</h3>
+        </div>
 	</div>
 </div>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
@@ -833,7 +798,7 @@ $("#status-options ul li").click(function() {
 	$("#status-busy").removeClass("active");
 	$("#status-offline").removeClass("active");
 	$(this).addClass("active");
-	
+
 	if($("#status-online").hasClass("active")) {
 		$("#profile-img").addClass("online");
 	} else if ($("#status-away").hasClass("active")) {
@@ -845,7 +810,7 @@ $("#status-options ul li").click(function() {
 	} else {
 		$("#profile-img").removeClass();
 	};
-	
+
 	$("#status-options").removeClass("active");
 });
 

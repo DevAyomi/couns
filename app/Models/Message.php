@@ -9,9 +9,6 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'content',
-        'chat_id',
-        'counsellee_id',   
-    ];
+    protected $guarded = ['id'];
+
 }

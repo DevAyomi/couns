@@ -10,16 +10,28 @@ class Chat extends Model
 {
     use HasFactory;
 
-     protected $fillable = [
+    protected $fillable = [
         'counsellee_id',
         'counsellor_id'
     ];
 
-    public function counsellor(){
-      return $this->belongsTo(User::class, 'counsellor_id');
+    public function counsellor()
+    {
+        return $this->belongsTo(User::class, 'counsellor_id');
     }
 
-     public function counsellee(){
-      return $this->belongsTo(User::class, 'counsellee_id');
-     }
+    public function counsellee()
+    {
+        return $this->belongsTo(User::class, 'counsellee_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function last_message()
+    {
+        return $this->messages()->latest()->first();
+    }
 }
