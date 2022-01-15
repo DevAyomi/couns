@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseChatController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Chat;
+use App\Models\User;
+
 
 class CounsellorChatController extends BaseChatController
 {
@@ -26,10 +30,16 @@ class CounsellorChatController extends BaseChatController
             'counsellee_id' => 'required|exists:users,id'
         ]);
 
-        if (!$this->establishChat($request->counsellee_id, auth()->id()))
-            return $this->badRequestAlert("Chat already established with Counsellee");
+       $user = auth()->user()->id;
 
-        return $this->successResponse("Chat established successfully with a Counsellee");
+        if (!$this->establishChat($user, $request->counsellee_id)){
+            return redirect()->back()->with('fail', 'Chat already established with counsellee');
+        }else{
+           /* $user = auth()->user()->id;
+            $chatId = Chat::firstWhere('counsellor_id', $user);*/
+           return redirect()->back()->with('established', 'Chat has been established with counsellee');
+        }
+
     }
 
     /**
@@ -48,14 +58,17 @@ class CounsellorChatController extends BaseChatController
         ]);
 
         if (!$this->sendMessage(
+
             $request->chat_id,
             $request->message,
-            $request->counsellee_id,
             null,
-            auth()->id()
-        )) return $this->badRequestAlert("Cannot send messages at this time");
+            $request->counsellee_id,
+            Auth::user()->id
+        )) {
+            return redirect()->back()->with('fail', 'Cannot send message at this time');
+        }
 
-        return $this->successResponse("Sent a message to the Counsellor");
+        return redirect()->back()->with('success', 'Sent a message to a counselle');
     }
 
     /**
@@ -66,7 +79,15 @@ class CounsellorChatController extends BaseChatController
     {
         $messages = $this->getAllMessagesInAChat($chatId);
 
-        // return view
+        $user = Auth::user()->id;
+        $chatId = Chat::firstWhere('counsellor_id', $user);
+        $winner = $chatId->id;
+        $counsellee = User::firstWhere('id', $winner);
+
+         //Getting what youve sent
+         
+         $chatId = Chat::firstWhere('counsellor_id', $user);
+         return view('chat', compact('chatId', 'counsellee', 'messages'));
     }
 
     public function setMessageToRead($messageId)
@@ -74,5 +95,17 @@ class CounsellorChatController extends BaseChatController
         $this->setMessageStatusToRead($messageId);
 
 //        return view
+    }
+
+    public function view(){
+        $user = auth()->user()->id;
+        $chatId = Chat::firstWhere('counsellor_id', $user);
+        $winner = $chatId->counsellee_id;
+        $counsellee = User::firstWhere('id', $winner);
+
+         //Getting what youve sent
+         
+         $chatId = Chat::firstWhere('counsellor_id', $user);
+         return view('chat', compact('chatId', 'counsellee'));
     }
 }

@@ -106,6 +106,25 @@
                                </x-jet-dropdown-link>
                                @endif
 
+                               @if(Auth::user()->usertype == "councilor")
+                               <x-jet-dropdown-link href="{{ route('counselReq.create-category') }}">
+                                {{ __('Create Category') }}
+                               </x-jet-dropdown-link>
+                               @endif
+
+                                @if(Auth::user()->usertype == "councilor")
+                               <x-jet-dropdown-link href="{{ route('view.chat') }}">
+                                {{ __('View Chats') }}
+                               </x-jet-dropdown-link>
+                                @endif
+
+
+                                @if(Auth::user()->usertype == "councilee")
+                               <x-jet-dropdown-link href="{{ route('counsellee.chat') }}">
+                                {{ __('View Chats') }}
+                               </x-jet-dropdown-link>
+                                @endif
+
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">

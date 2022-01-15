@@ -7,6 +7,9 @@ use App\Models\Category;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CounselRequestController;
+use App\Http\Controllers\BaseChatController;
+use App\Http\Controllers\CounsellorChatController;
+use App\Http\Controllers\CounselleeChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,22 +48,33 @@ Route::post('/cat-post', [CategoryController::class, 'create']);
 Route::get('update', [CategoryController::class, 'upView'])->name('update-cat');
 Route::post('update/{id}', [CategoryController::class, 'update'])->name('category');
 
-//Chat App
-Route::get('chat', function(){
-    return view('chat');
+//Counsellor Chat Routes
+Route::group(['prefix' => 'counsellor'], function (){
+    Route::any('chat', [CounsellorChatController::class, 'createChat'])->name('establish.chat');
+    Route::get('view-chat', [CounsellorChatController::class, 'view'])->name('view.chat');
+    Route::any('send-message', [CounsellorChatController::class, 'sendMessageToCounsellee'])->name('send.message');
+    Route::get('get-chat/{id}', [CounsellorChatController::class, 'getAllMessagesInAChatWithCounsellee'])->name('get.chat');
 });
 
+
+//Counsellee Chat Route
+Route::group(['prefix' => 'counsellee'], function(){
+    Route::any('chats', [CounselleeChatController::class, 'view'])->name('counsellee.chat');
+    Route::any('send-message', [CounselleeChatController::class, 'sendMessageToCounsellor'])->name('message.send');
+     Route::get('get-chat/{id}', [CounselleeChatController::class, 'getAllMessagesInAChatWithCounsellor'])->name('get.chats');
+});
 
 
 Route::group(['prefix' => 'counsel_requests', 'name' => 'counselReq.'], function () {
     //for named route, call it as Route('counselReq.store') and others
     Route::post('', [CounselRequestController::class, 'store'])->name('counselReq.store');
     Route::get('/my_requests', [CounselRequestController::class, 'getAllMyCounselRequests'])->name('counselReq.mine');
-    Route::get('create-category' [CounselRequestController::class, 'CreateShow'])->name('counselReq.create-category');
+    Route::get('create-category', [CounselRequestController::class, 'CreateShow'])->name('counselReq.create-category');
     Route::get('/show/{id}', [CounselRequestController::class, 'show'])->name('counselReq.single');
     Route::delete('delete', [CounselRequestController::class, 'delete'])->name('counselReq.delete');
     Route::get('/view', [CounselRequestController::class, 'view'])->name('counsel.request');
-    Route::get('create-category' [CounselRequestController::class, 'CreateShow'])->name('counselReq.create-category');
+    Route::get('create-category', [CategoryController::class, 'CreateShow'])->name('counselReq.create-category');
+
 });
 
 

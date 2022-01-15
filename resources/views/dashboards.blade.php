@@ -1,7 +1,7 @@
 
 
 
-<x-layouts.admin>
+<x-app-layout>
     <x-slot name="header">
         <div style="display: flex; justify-content: space-between;">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -18,6 +18,18 @@
 
         @if ($message = Session::get('info'))
         <div class="alert alert-info alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong>{{ $message }}</strong>
+        </div>
+        @endif
+         @if ($message = Session::get('fail'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button> 
+                <strong>{{ $message }}</strong>
+        </div>
+        @endif
+         @if ($message = Session::get('established'))
+        <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button> 
                 <strong>{{ $message }}</strong>
         </div>
@@ -67,7 +79,15 @@
                 <div class="content">
                     <h6 class="category"></h6>
                     <p>{{ Str::limit($counsel->request, 20) }}</p>
-                    <a class="btn btn-info form-control mb-2 mt-2" href="">Chat</a>
+                   <form method="post" action="{{ route('establish.chat')}}">
+                    @csrf
+                        <input type="hidden" name="counsellee_id" value="{{ $counsel->consellee_id }}">
+                         @if (Session::get('established'))
+                         <button class="btn btn-info form-control mb-2 mt-2">Establish Chat</button>
+                         @else
+                        <p class="btn btn-info form-control mb-2 mt-2">Established</p>
+                        @endif
+                   </form>
                     
                 </div>
             </div> <!-- end card -->
@@ -81,4 +101,4 @@
 
 </div>
 
-</x-layouts.admin>
+</x-app-layout>

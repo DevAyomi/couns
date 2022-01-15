@@ -43,7 +43,6 @@ class BaseChatController extends Controller
      */
     public function sendMessage($chatId, $content, $replyingTo = null, $counsellorId = null, $counselleeId = null)
     {
-        if (!$this->chatIsTrashed($chatId)) {
             Message::create([
                 'counsellor_id' => $counsellorId,
                 'counsellee_id' => $counselleeId,
@@ -53,9 +52,6 @@ class BaseChatController extends Controller
             ]);
 
             return true;
-        }
-
-        return false;
     }
 
     /**

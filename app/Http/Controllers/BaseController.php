@@ -19,7 +19,7 @@ class BaseController extends Controller
             if(!is_null($category)){
                 $category = Category::firstWhere('user_id', auth()->user()->id);
                 $counselRequest = CounselRequest::where('category_id', $category->id)->get();
-                return view('admin/dashboard', compact('counselRequest', 'category'));
+                return view('dashboards', compact('counselRequest', 'category'));
             }else{ 
                 
                  return view('create')->with('info', 'You have to create a category first');
@@ -43,4 +43,8 @@ class BaseController extends Controller
            }
 
         }
+
+         public function viewMessage(){
+            return view('chat');
+         }
 }
