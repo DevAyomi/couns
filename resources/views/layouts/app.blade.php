@@ -22,6 +22,8 @@
                 <title>My Requests</title>
             @elseif(Str::contains($user, 'counsel-requests/view'))
                 <title>Create Counsel Request</title>
+             @elseif(Str::contains($user, 'dashboard'))
+                <title>Dashboard</title>
             @endif
 
          <!-- Bootstrap CSS -->
