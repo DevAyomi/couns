@@ -24,6 +24,8 @@
                 <title>Create Counsel Request</title>
              @elseif(Str::contains($user, 'dashboard'))
                 <title>Dashboard</title>
+             @elseif(Str::contains($user, 'show'))
+                <title>Show Request</title>
             @endif
 
          <!-- Bootstrap CSS -->
