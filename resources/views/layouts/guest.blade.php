@@ -4,9 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Registeration') }}</title>
-
+        
+           <?php  $user = url()->current(); ?>
+            @if(Str::contains($user, 'login'))
+                <title>Login</title>
+            @elseif(Str::contains($user, 'register'))
+            <title>Register</title>
+            @endif
         
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
@@ -35,4 +39,9 @@
     <script src="{{ asset('auth/js/popper.min.js') }}"></script>
     <script src="{{ asset('auth/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('auth/js/main.js') }}"></script>
+     <script>
+        
+
+
+    </script>
 </html>

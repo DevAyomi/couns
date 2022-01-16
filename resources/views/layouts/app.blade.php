@@ -4,8 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
+            
+            <?php  $user = url()->current(); ?>
+            @if(Str::contains($user, 'create-category'))
+                <title>Create Category</title>
+            @elseif(Str::contains($user, 'counsellor/view-chat'))
+                <title>Counsellor View Chats</title>
+            @elseif(Str::contains($user, 'counsellee/chats'))
+                <title>Counsellee View Chats</title>
+            @elseif(Str::contains($user, 'counsellor/get-chat'))
+                <title>Counsellor Get Chats</title>
+            @elseif(Str::contains($user, 'counsellee/get-chat'))
+                <title>Counsellee Get Chats</title>
+             @elseif(Str::contains($user, 'user/profile'))
+                <title>Profile</title>
+            @elseif(Str::contains($user, 'my_requests'))
+                <title>My Requests</title>
+            @elseif(Str::contains($user, 'counsel-requests/view'))
+                <title>Create Counsel Request</title>
+            @endif
 
          <!-- Bootstrap CSS -->
         <!--=====================================================================================-->

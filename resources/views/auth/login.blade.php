@@ -22,7 +22,7 @@
               </div>
               @endif
               <x-jet-validation-errors class="mb-4" />
-
+              
             <form method="POST" action="{{ route('login') }}">
               @csrf
               <div class="form-group first">   
