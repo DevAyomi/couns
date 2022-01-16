@@ -714,7 +714,7 @@ Website: http://emilcarlsson.se/
                 <strong>{{ $message }}</strong>
         </div>
         @endif
-      
+
         <div id="status-options">
           <ul>
             <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
@@ -733,10 +733,10 @@ Website: http://emilcarlsson.se/
         </div>
       </div>
     </div>
-    {{-- <div id="search">
-      <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-      <input type="text" placeholder="Search contacts..." />
-    </div> --}}
+    <div id="search">
+        <b><p style="color: white;" class="text-center">List of Counsellors you're chatting with</p></b>
+
+    </div>
 
 
     <div id="contacts">
@@ -762,8 +762,8 @@ Website: http://emilcarlsson.se/
   <div class="content">
 
     <div class="messages m-5">
-            <h3>None</h3>
-        </div>
+        <h3 class="text-center">Click on a Chat to View Messages</h3>
+    </div>
   </div>
 </div>
 </div>

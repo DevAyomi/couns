@@ -17,7 +17,7 @@
 
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button> 
+            <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
         </div>
         @endif
@@ -29,18 +29,21 @@
     @foreach($counselRequest as $counsel)
     <div class="col-md-4 col-sm-6 content-card">
         <div class="card-big-shadow">
-            <div class="card card-just-text" data-background="color" data-color="blue" data-radius="none">
+            <div class="card card-just-text" data-background="color" data-color="white" data-radius="none">
                 <div class="content">
                     <h6 class="category"></h6>
-                    <p>{{ Str::limit($counsel->request, 20) }}</p>
+                    <p style="color: black;">{{ $counsel->request}}</p>
+                    <button class="btn-xm btn-success">{{$counsel->category->category}}</button>
+
+                    <br>    <br>
                     <a class="btn btn-info form-control mb-2 mt-2" href="{{route('counselReq.single', ['id' => $counsel->id])}}">View</a>
 
-                    <form method="post" action="{{ route('counselReq.delete', ['id' => $counsel->id]) }}">
+                    <form method="post" action="{{ route('counselReq.delete', $counsel->id) }}">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger form-control">Delete</button>
                     </form>
-                    
+
                 </div>
             </div> <!-- end card -->
         </div>
@@ -57,7 +60,7 @@
                     <h6 class="category"></h6>
                     <p>{{ Str::limit($counsel->request, 20) }}</p>
                     <a class="btn btn-info form-control mb-2 mt-2" href="">Chat</a>
-                    
+
                 </div>
             </div> <!-- end card -->
         </div>

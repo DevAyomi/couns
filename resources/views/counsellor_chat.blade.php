@@ -732,11 +732,11 @@ Website: http://emilcarlsson.se/
         </div>
       </div>
     </div>
-    {{-- <div id="search">
-      <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-      <input type="text" placeholder="Search contacts..." />
-    </div> --}}
-
+    <div id="search">
+      <b><p style="color: white;" class="text-center">List of Counselees you're chatting with</p></b>
+    </div>
+    <br>
+    <br>
 
     <div id="contacts">
             @foreach ($chats as $chat )
@@ -761,7 +761,7 @@ Website: http://emilcarlsson.se/
   <div class="content">
 
     <div class="messages m-5">
-            <h3>None</h3>
+            <h3 class="text-center">Click on a Chat to View Messages</h3>
         </div>
   </div>
 </div>

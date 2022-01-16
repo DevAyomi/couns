@@ -26,6 +26,7 @@ class CategoryController extends Controller
             'username' => Auth::user()->name,
             'category' => $request->category,
             'user_id' => Auth::user()->id,
+            'imgpath' => 'nothing'
         ]);
         return redirect()->route('redirect')->with('success', 'You have successfully created a category');
 

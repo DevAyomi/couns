@@ -9,14 +9,19 @@ class CounselRequest extends Model
 {
     use HasFactory;
 
-    public function counsellee()
-    {
-        return $this->belongsTo(User::class)->withDefault();
-    }
-
     protected $fillable = [
         'consellee_id',
         'category_id',
         'request',
     ];
+
+    public function counsellee()
+    {
+        return $this->belongsTo(User::class)->withDefault();
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class)->withDefault();
+    }
 }

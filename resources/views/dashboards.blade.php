@@ -5,7 +5,7 @@
     <x-slot name="header">
         <div style="display: flex; justify-content: space-between;">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Counsel Requests') }}
+                {{ __('Counsel Requests in your Counselling Category') }}
             </h2>
 
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -81,15 +81,18 @@
     @foreach($counselRequest as $counsel)
     <div class="col-md-4 col-sm-6 content-card">
         <div class="card-big-shadow">
-            <div class="card card-just-text" data-background="color" data-color="blue" data-radius="none">
+            <div class="card card-just-text" data-background="color" data-color="white" data-radius="none">
                 <div class="content">
                     <h6 class="category"></h6>
-                    <p>{{ Str::limit($counsel->request, 20) }}</p>
+                    <p style="color: black;">{{ $counsel->request }}</p>
+                    <button class="btn-xm btn-success">{{$counsel->category->category}}</button>
                    <form method="post" action="{{ route('establish.chat')}}">
+                    <br>
+                    <br>
                     @csrf
                         <input type="hidden" name="counsellee_id" value="{{ $counsel->consellee_id }}">
                          @if (Session::get('established'))
-                         <button class="btn btn-info form-control mb-2 mt-2">Establish Chat</button>
+                         <button class="btn btn-info form-control mb-2 mt-2">Chat with Counsellee</button>
                          @else
                         <a href="{{route('view.chat')}}" class="btn btn-info orm-control">Chat Ongoing..</a>
                         @endif

@@ -732,10 +732,10 @@ Website: http://emilcarlsson.se/
         </div>
       </div>
     </div>
-    <div id="search">
+    {{-- <div id="search">
       <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
       <input type="text" placeholder="Search contacts..." />
-    </div>
+    </div> --}}
 
 
     <div id="contacts">
@@ -748,7 +748,7 @@ Website: http://emilcarlsson.se/
                            <div class="meta" style="color: white">
                                {{-- <a style="color: white;" href="{{route('get.chat',['id' => $chatId->id])}}"> --}}
                      <p class="name text-light">{{ $chat->counsellee->name }}</p>
-                     <p class="preview text-light"><span>You:</span> {{$messages->first()->content}}</p>
+                     <p class="preview text-light"><span>You:</span> {{$messages->first()->content ?? ''}}</p>
                  </a>
                            </div>
                        </div>

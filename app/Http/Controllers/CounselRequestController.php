@@ -26,14 +26,14 @@ class CounselRequestController extends Controller
 
 
         if (auth()->user()->usertype == 'councilee') {
-           
-           $counselRequest = CounselRequest::create([
+
+            $counselRequest = CounselRequest::create([
                 'consellee_id' => $request->counsellee_id,
                 'category_id' => $request->category_id,
                 'request' => $request->message,
-           ]);
+            ]);
 
-           return redirect()->back()->with('success', "counsel Request created successfully");
+            return redirect()->back()->with('success', "counsel Request created successfully");
         }
     }
 
@@ -45,39 +45,38 @@ class CounselRequestController extends Controller
 
             // return view
             return view('showRequest', compact('counselRequest'));
-        }else{
+        } else {
             $category = Category::firstWhere('user_id', auth()->user()->id);
-            if(!is_null($category)){
+            if (!is_null($category)) {
                 $counselRequest = CounselRequest::where('category_id', $category->id)->get();
                 return view('showRequest', compact('counselRequest'));
-            }else{
-               return view('create')->with('info', 'You have to create a category first');
+            } else {
+                return view('create')->with('info', 'You have to create a category first');
             }
-               
         }
     }
 
     public function show($id)
     {
         $counselRequest = CounselRequest::findOrFail($id);
-        return view('view',compact('counselRequest'));
+        return view('view', compact('counselRequest'));
     }
     public function delete($id)
-    {   
+    {
         $counselRequest = CounselRequest::findOrFail($id);
         $counselRequest->delete();
         return redirect()->back()->with('success', 'Counsel request have been deleted successfuly');
     }
 
-    public function view(){
+    public function view()
+    {
         $counselles = User::firstWhere('id', Auth::user()->id);
         $categories = Category::all();
-        return view('counsel', compact('categories','counselles'));
+        return view('counsel', compact('categories', 'counselles'));
     }
 
-    public function CreateShow(){
+    public function CreateShow()
+    {
         return view('create');
-       }
-
-
+    }
 }

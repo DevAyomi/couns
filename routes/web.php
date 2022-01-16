@@ -71,7 +71,7 @@ Route::group(['prefix' => 'counsel_requests', 'name' => 'counselReq.'], function
     Route::get('/my_requests', [CounselRequestController::class, 'getAllMyCounselRequests'])->name('counselReq.mine');
     Route::get('create-category', [CounselRequestController::class, 'CreateShow'])->name('counselReq.create-category');
     Route::get('/show/{id}', [CounselRequestController::class, 'show'])->name('counselReq.single');
-    Route::delete('delete', [CounselRequestController::class, 'delete'])->name('counselReq.delete');
+    Route::delete('delete/{id}', [CounselRequestController::class, 'delete'])->name('counselReq.delete');
     Route::get('/view', [CounselRequestController::class, 'view'])->name('counsel.request');
     Route::get('create-category', [CategoryController::class, 'CreateShow'])->name('counselReq.create-category');
 
