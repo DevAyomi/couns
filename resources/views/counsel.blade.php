@@ -23,6 +23,7 @@
 </head>
 <body>
 
+<x-app-layout>
 	<div class="contact1">
 		<div class="container-contact1">
 			
@@ -81,6 +82,7 @@
 			</form>
 		</div>
 	</div>
+</x-app-layout>
 
 
 
