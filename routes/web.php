@@ -40,7 +40,7 @@ Route::get('/admin/dashboard', function () {
 });
 
 //Redirect Route here
-Route::get('/redirect', [BaseController::class, 'redirect']);
+Route::get('/dashboard', [BaseController::class, 'redirect'])->name('redirect');
 
 Route::post('/cat-post', [CategoryController::class, 'create']);
 

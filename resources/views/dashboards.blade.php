@@ -5,7 +5,7 @@
     <x-slot name="header">
         <div style="display: flex; justify-content: space-between;">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Dashboard') }}
+                {{ __('Counsel Requests') }}
             </h2>
 
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -85,7 +85,7 @@
                          @if (Session::get('established'))
                          <button class="btn btn-info form-control mb-2 mt-2">Establish Chat</button>
                          @else
-                        <p class="btn btn-info form-control mb-2 mt-2">Established</p>
+                        <a href="{{route('view.chat')}}" class="btn btn-info orm-control">Chat Ongoing..</a>
                         @endif
                    </form>
 

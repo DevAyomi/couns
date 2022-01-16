@@ -8,11 +8,13 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
          <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!--=====================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{{ asset('/counsel/vendor/bootstrap/css/bootstrap.min.css') }}">
+       <!--==========================================================================================-->
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+       <!--=========================================================================================-->
+          <link rel="stylesheet" type="text/css" href="{{ asset('counsel/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+        <!--==========================================================================================-->
         <link rel="stylesheet" type="text/css" href="{{ asset('profile/style.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('counsel/css/request.css') }}">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -52,7 +54,11 @@
 
         @livewireScripts
         
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+         <script src="{{ asset('counsel/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+         <script src="{{ asset('counsel/vendor/bootstrap/js/popper.js') }}"></script>
+        <script src="{{ asset('counsel/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('counsel/vendor/select2/select2.min.js') }}"></script>
+        <script src="{{ asset('counsel/vendor/tilt/tilt.jquery.min.js') }}"></script>
 
     </body>
 </html>

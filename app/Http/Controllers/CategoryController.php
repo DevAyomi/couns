@@ -27,7 +27,7 @@ class CategoryController extends Controller
             'category' => $request->category,
             'user_id' => Auth::user()->id,
         ]);
-        return redirect('/redirect')->with('success', 'You have successfully created a category');
+        return redirect()->route('redirect')->with('success', 'You have successfully created a category');
 
     }
 
@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $category->category = $request->category;
         $category->save();
 
-        return redirect('/redirect')->with('success', 'You have successfully updated your category');
+        return redirect()->route('redirect')->with('success', 'You have successfully updated your category');
 
    }
 
